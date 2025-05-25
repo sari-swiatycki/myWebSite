@@ -424,7 +424,7 @@ export const fetchUserPlaylists = createAsyncThunk(
   "playlists/fetchUserPlaylists",
   async (userId: number, { rejectWithValue }) => {
     try {
-      const response = await api.get<playlist[]>(`/PlayList/user/${userId}`);
+      const response = await api.get<playlist[]>(`api/PlayList/user/${userId}`);
       return response.data;
     } catch (error: any) {
       return rejectWithValue(error.response?.data || "Failed to fetch user playlists");
