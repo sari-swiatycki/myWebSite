@@ -1025,7 +1025,7 @@ const FileUploader: React.FC = () => {
       const audioUrl = downloadResponse.data
 
       // Save song details to server using original variable names
-      await api.post("/upload/save-song", {
+      await api.post("api/upload/save-song", {
         title,
         artist,
         genere,
