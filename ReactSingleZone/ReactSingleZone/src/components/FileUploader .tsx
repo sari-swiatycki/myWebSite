@@ -1007,7 +1007,7 @@ const FileUploader: React.FC = () => {
 
     try {
       // Get presigned URL from server
-      const presignedResponse = await api.get("/upload/presigned-url", {
+      const presignedResponse = await api.get("api/upload/presigned-url", {
         params: { fileName: file.name },
       })
       const presignedUrl = presignedResponse.data.url
@@ -1021,7 +1021,7 @@ const FileUploader: React.FC = () => {
         },
       })
       // Get download URL from server
-      const downloadResponse = await api.get(`/upload/download-url/${file.name}`)
+      const downloadResponse = await api.get(`api/upload/download-url/${file.name}`)
       const audioUrl = downloadResponse.data
 
       // Save song details to server using original variable names

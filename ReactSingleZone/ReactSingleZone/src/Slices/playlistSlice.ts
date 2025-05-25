@@ -437,7 +437,7 @@ export const fetchPlaylistSongs = createAsyncThunk(
   "playlists/fetchPlaylistSongs",
   async (playlistId: number, { rejectWithValue }) => {
     try {
-      const response = await api.get(`/PlayListSong/get-songs/${playlistId}`);
+      const response = await api.get(`api/PlayListSong/get-songs/${playlistId}`);
       return response.data;
     } catch (error: any) {
       return rejectWithValue(error.response?.data || "Failed to fetch playlist songs");
@@ -451,7 +451,7 @@ export const addPlaylist = createAsyncThunk(
   async ({ name, userId }: { name: string; userId: number }, { rejectWithValue }) => {
     try {
       console.log({ name, userId });
-      const response = await api.post("/PlayList", { name, userId });
+      const response = await api.post("api/PlayList", { name, userId });
       return response.data;
     } catch (error: any) {
       return rejectWithValue(error.response?.data || "Failed to add playlist");
@@ -465,7 +465,7 @@ export const addSongToPlaylist = createAsyncThunk(
   async ({ playlistId, songId }: { playlistId: number; songId: number }, { rejectWithValue }) => {
     try {
     
-      const response = await api.post("/PlayListSong/add-song", {
+      const response = await api.post("api/PlayListSong/add-song", {
         playListId: playlistId,
         songId: songId,
 
@@ -483,7 +483,7 @@ export const removeSongFromPlaylist = createAsyncThunk(
   async ({ playlistId, songId }: { playlistId: number; songId: number }, { rejectWithValue }) => {
     try {
       await api.delete(
-        `/PlayListSong/remove-song?playListId=${playlistId}&songId=${songId}`
+        `api/PlayListSong/remove-song?playListId=${playlistId}&songId=${songId}`
       );
       return { playlistId, songId };
     } catch (error: any) {
