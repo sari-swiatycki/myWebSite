@@ -332,11 +332,12 @@ import { Modal, Box, Typography, Button, IconButton } from "@mui/material"
 import StarIcon from "@mui/icons-material/Star"
 import CloseIcon from "@mui/icons-material/Close"
 import CheckCircleIcon from "@mui/icons-material/CheckCircle"
-import { useDispatch, useSelector } from "react-redux"
-import type { AppDispatch, RootStore } from "../Stores/songStore"
+
 import { addRating } from "../Slices/actionSongSlice"
 import MusicNoteIcon from "@mui/icons-material/MusicNote"
 import HeadphonesIcon from "@mui/icons-material/Headphones"
+import { AppDispatch } from "../Stores/songStore"
+import { useDispatch } from "react-redux"
 
 interface RatingModalProps {
   open: boolean
