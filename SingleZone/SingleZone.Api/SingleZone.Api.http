@@ -1,0 +1,6 @@
+@SingleZone_.Api_HostAddress = http://localhost:5120
+
+GET {{SingleZone_.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

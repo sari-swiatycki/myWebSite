@@ -1,0 +1,11 @@
+body {
+    background-color: black;
+    color: white; /* This sets text color to white for better readability on black background */
+    margin: 0;
+    padding: 0;
+  }
+  
+  #root {
+    min-height: 100vh;
+    background-color: black;
+  }
