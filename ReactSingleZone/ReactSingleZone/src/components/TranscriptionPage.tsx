@@ -50,7 +50,7 @@ const TranscriptionPage: React.FC = () => {
       const formData = new FormData()
       formData.append("file", file)
 
-      const response = await fetch("https://singlezonereact.onrender.com/api/transcription/transcribe-full", {
+      const response = await fetch("https://singlezone-net.onrender.com/api/transcription/transcribe-full", {
         method: "POST",
         body: formData,
       })

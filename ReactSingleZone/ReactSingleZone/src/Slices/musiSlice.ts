@@ -186,7 +186,7 @@ export const addSong = createAsyncThunk<Song, Song>('music/addSong', async (newS
 export const deleteSong = createAsyncThunk<number, number>(
     'music/deleteSong',
     async (songId) => {
-        await axios.delete(`https://singlezonereact.onrender.com/api/Songs/${songId}`);
+        await axios.delete(`https://singlezone-net.onrender.com/api/Songs/${songId}`);
         return songId; // מחזיר את ה-ID של השיר שנמחק
     }
 );

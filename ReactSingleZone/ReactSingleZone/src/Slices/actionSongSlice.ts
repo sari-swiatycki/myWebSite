@@ -373,8 +373,7 @@ import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import song from "../types/song";
 
-const API_URL = "https://singlezonereact.onrender.com";
-
+const API_URL = "https://singlezone-net.onrender.com"
 interface SongState {
   songs: song[];  // מערך של כל השירים
   filteredSongs: song[];  // מערך אחיד לכל התוצאות (סינון/חיפוש)
@@ -427,7 +426,7 @@ export const addRating = createAsyncThunk(
   'drawings/addRating',
   async ({ songId, value }: { songId: number, value: number }) => {
     const response = await axios.post(
-      `https://singlezonereact.onrender.com/api/Songs/Rate/${songId}`,
+      `https://singlezone-net.onrender.com/api/Songs/Rate/${songId}`,
       value,  // שלח רק את הדירוג כערך מספרי ולא כ-object
       {
         headers: {
