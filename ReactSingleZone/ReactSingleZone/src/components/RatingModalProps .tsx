@@ -349,7 +349,7 @@ const RatingModal: React.FC<RatingModalProps> = ({ open, onClose, songId, songTi
   const dispatch = useDispatch<AppDispatch>()
 
   // Get songs from Redux store to update UI immediately
-  const songs = useSelector((state: RootStore) => state.songs.songs)
+  // const songs = useSelector((state: RootStore) => state.songs.songs)
 
   const [rating, setRating] = useState<number>(0)
   const [hoveredRating, setHoveredRating] = useState<number>(0)
