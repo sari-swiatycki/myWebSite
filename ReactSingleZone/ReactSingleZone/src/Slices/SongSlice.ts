@@ -4,7 +4,7 @@ import Category from '../types/Category';
 import category from '../types/Category';
 import { RootStore } from '../Stores/songStore';
 
-const API_URL = 'http://localhost:5120';
+const API_URL = 'https://singlezonereact.onrender.com';
 
 // interface Song {
 //   Id: number;

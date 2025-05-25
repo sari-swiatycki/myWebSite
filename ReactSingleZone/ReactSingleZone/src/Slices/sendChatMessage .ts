@@ -93,7 +93,7 @@ const initialState: ChatState = {
 export const sendChatMessage = createAsyncThunk(
   'chat/sendChatMessage',
   async (message: string) => {
-    const response = await axios.post('http://localhost:5120/api/ChatApi/chat', {
+    const response = await axios.post('https://singlezonereact.onrender.com/api/ChatApi/chat', {
       message,
       systemRole: "אתה מומחה מוזיקה, תן תשובות טובות",
     });

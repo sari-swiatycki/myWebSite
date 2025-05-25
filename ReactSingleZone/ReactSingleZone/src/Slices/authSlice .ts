@@ -23,7 +23,7 @@ export const registerUser = createAsyncThunk(
   async (userData: UserData, { rejectWithValue }) => {  
     try {
       console.log("userData", userData);      
-      const response = await axios.post(`http://localhost:5120/api/Auth/register`, userData, {
+      const response = await axios.post(`https://singlezonereact.onrender.com/api/Auth/register`, userData, {
         headers: {
           'Content-Type': 'application/json',
         }
@@ -48,7 +48,7 @@ export const loginUser = createAsyncThunk(
     try {
       console.log("loginData", loginData);
      
-      const response = await axios.post(`http://localhost:5120/api/Auth/login`, loginData, {
+      const response = await axios.post(`https://singlezonereact.onrender.com/api/Auth/login`, loginData, {
         headers: {
           'Content-Type': 'application/json',
         }
