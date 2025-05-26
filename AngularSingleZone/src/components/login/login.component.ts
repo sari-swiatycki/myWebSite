@@ -1,21 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ErrorsComponent } from '../errors/errors.component';
 import { MatError,  } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
-import { MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { AuthService } from '../../services/auth.service';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule,ErrorsComponent, ReactiveFormsModule,
+  imports: [ReactiveFormsModule, ReactiveFormsModule,
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,MatIconModule,
@@ -25,7 +24,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
       MatButtonModule,
       MatCheckboxModule,
       MatIconModule,
-      MatCardModule
+      MatCardModule,
+      CommonModule
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']

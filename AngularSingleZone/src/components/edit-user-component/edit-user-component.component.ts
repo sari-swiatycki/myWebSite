@@ -83,7 +83,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatError, MatFormFieldModule } from '@angular/material/form-field';
+import {  MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -98,7 +98,7 @@ import { UserService } from '../../services/user.service';
     MatInputModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatIconModule,MatError],
+    MatIconModule],
   templateUrl: './edit-user.component.html',
   styleUrl: './edit-user.component.css'
 })

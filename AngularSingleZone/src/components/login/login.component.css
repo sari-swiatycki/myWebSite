@@ -1,4 +1,4 @@
-:host {
+/* :host {
     direction: rtl;
     display: block;
   }
@@ -37,7 +37,7 @@
     line-height: 1.6;
   }
   
-  /* Login Section */
+
   .login-section {
     flex: 1;
     display: flex;
@@ -164,7 +164,7 @@
     text-decoration: underline;
   }
   
-  /* Responsive design */
+
   @media (max-width: 1024px) {
     .split-container {
       flex-direction: column;
@@ -177,4 +177,483 @@
     .login-section {
       padding: 40px 20px;
     }
+  } */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  :host {
+    direction: ltr;
+    display: block;
   }
+  
+  .split-container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    background: #000000;
+    flex-direction: row-reverse;
+  }
+  
+  .image-section {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000000;
+  }
+  
+  .background-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    opacity: 0.3;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    color: white;
+    text-align: center;
+    z-index: 1;
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+  
+  .logo-container mat-icon {
+    font-size: 4rem;
+    width: 4rem;
+    height: 4rem;
+    color: #20b2aa;
+    background: linear-gradient(135deg, #20b2aa, #008b8b);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 30px rgba(32, 178, 170, 0.4);
+  }
+  
+  .logo-container span {
+    color: #ffffff;
+    font-weight: 400;
+  }
+  
+  .overlay h2 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-bottom: 20px;
+    color: #ffffff;
+    text-shadow: none;
+  }
+  
+  .overlay p {
+    font-size: 1.1rem;
+    max-width: 500px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+    text-shadow: none;
+    min-height: 50px;
+  }
+  
+  .typing-animation {
+    border-right: 2px solid #20b2aa;
+    animation: blink 1s infinite;
+  }
+  
+  @keyframes blink {
+    0%, 50% {
+      border-color: #20b2aa;
+    }
+    51%, 100% {
+      border-color: transparent;
+    }
+  }
+  
+  @keyframes typewriter {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+  
+  .login-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000000;
+    padding: 20px;
+    position: relative;
+  }
+  
+  .login-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="%23333333" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>') repeat;
+    opacity: 0.2;
+    z-index: 0;
+  }
+  
+  .login-card-container {
+    width: 100%;
+    max-width: 450px;
+    z-index: 1;
+    position: relative;
+  }
+  
+  .login-card {
+    padding: 50px 40px;
+    border-radius: 20px;
+    background: rgba(20, 20, 20, 0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(32, 178, 170, 0.2);
+    box-shadow: 
+      0 20px 40px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(32, 178, 170, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+  
+  .login-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .login-header h1 {
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: #ffffff;
+    margin-bottom: 12px;
+    text-shadow: none;
+  }
+  
+  .login-header p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Material Form Field Styling */
+  ::ng-deep .login-form mat-form-field {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  ::ng-deep .login-form mat-form-field .mat-mdc-form-field-flex {
+    background: rgba(0, 0, 0, 0.8) !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(80, 80, 80, 0.5) !important;
+    transition: all 0.3s ease !important;
+  }
+  
+  ::ng-deep .login-form mat-form-field .mat-mdc-form-field-flex:hover {
+    background: rgba(0, 0, 0, 0.9) !important;
+    border-color: rgba(32, 178, 170, 0.5) !important;
+  }
+  
+  ::ng-deep .login-form mat-form-field.mat-focused .mat-mdc-form-field-flex {
+    background: rgba(0, 0, 0, 1) !important;
+    border-color: #20b2aa !important;
+    box-shadow: 0 0 0 2px rgba(32, 178, 170, 0.2) !important;
+  }
+  
+  ::ng-deep .login-form mat-form-field input {
+    color: white !important;
+    caret-color: #20b2aa !important;
+    font-size: 1rem !important;
+    padding: 16px 20px !important;
+  }
+  
+  ::ng-deep .login-form mat-form-field input::placeholder {
+    color: rgba(255, 255, 255, 0.6) !important;
+  }
+  
+  ::ng-deep .login-form mat-form-field .mat-mdc-form-field-subscript-wrapper {
+    display: none !important;
+  }
+  
+  ::ng-deep .login-form mat-form-field .mat-mdc-form-field-bottom-align::before {
+    display: none !important;
+  }
+  
+  .form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  /* Checkbox Styling */
+  ::ng-deep .form-options mat-checkbox {
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+  
+  ::ng-deep .form-options mat-checkbox .mat-mdc-checkbox .mdc-checkbox__background {
+    border-color: rgba(255, 255, 255, 0.3) !important;
+  }
+  
+  ::ng-deep .form-options mat-checkbox .mat-mdc-checkbox.mdc-checkbox--selected .mdc-checkbox__background {
+    background-color: #20b2aa !important;
+    border-color: #20b2aa !important;
+  }
+  
+  ::ng-deep .form-options mat-checkbox .mdc-label {
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+  
+  .forgot-password {
+    color: #20b2aa;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+  }
+  
+  .forgot-password:hover {
+    color: #008b8b;
+    text-decoration: underline;
+    text-shadow: 0 0 8px rgba(32, 178, 170, 0.4);
+  }
+  
+  .login-button {
+    height: 55px !important;
+    font-size: 1.1rem !important;
+    font-weight: 500 !important;
+    background: linear-gradient(135deg, #20b2aa 0%, #008b8b 100%) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 12px !important;
+    margin-bottom: 25px !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 
+      0 8px 25px rgba(32, 178, 170, 0.3),
+      0 0 0 1px rgba(32, 178, 170, 0.2) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    text-transform: none !important;
+    letter-spacing: 0.5px !important;
+  }
+  
+  .login-button:hover:not([disabled]) {
+    transform: translateY(-2px) !important;
+    box-shadow: 
+      0 12px 35px rgba(32, 178, 170, 0.4),
+      0 0 0 1px rgba(32, 178, 170, 0.3) !important;
+    background: linear-gradient(135deg, #008b8b 0%, #006666 100%) !important;
+  }
+  
+  .login-button:disabled {
+    opacity: 0.5 !important;
+    cursor: not-allowed !important;
+    transform: none !important;
+  }
+  
+  .login-button mat-icon {
+    font-size: 1.3rem !important;
+    width: 1.3rem !important;
+    height: 1.3rem !important;
+  }
+  
+  .register-link {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .register-link span {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+  }
+  
+  .register-button {
+    color: #20b2aa;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: 5px;
+    transition: all 0.3s ease;
+  }
+  
+  .register-button:hover {
+    text-decoration: underline;
+    text-shadow: 0 0 8px rgba(32, 178, 170, 0.4);
+  }
+  
+  /* Error Message Styling */
+  .error-message {
+    background: linear-gradient(135deg, #ff4757, #ff3742);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: 500;
+    box-shadow: 0 8px 25px rgba(255, 71, 87, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .split-container {
+      flex-direction: column;
+    }
+    
+    .image-section {
+      height: 300px;
+    }
+    
+    .login-section {
+      padding: 40px 20px;
+    }
+  
+    .overlay h2 {
+      font-size: 1.8rem;
+    }
+  
+    .overlay p {
+      font-size: 1rem;
+    }
+  
+    .logo-container {
+      font-size: 2rem;
+    }
+  
+    .logo-container mat-icon {
+      font-size: 2.5rem;
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .login-card {
+      padding: 40px 30px;
+      margin: 20px;
+    }
+  
+    .login-header h1 {
+      font-size: 1.8rem;
+    }
+  
+    .overlay h2 {
+      font-size: 1.5rem;
+    }
+  
+    .logo-container {
+      font-size: 1.5rem;
+    }
+  
+    .logo-container mat-icon {
+      font-size: 2rem;
+      width: 2rem;
+      height: 2rem;
+    }
+  
+    .image-section {
+      height: 250px;
+    }
+  }
+  
+  /* Loading Animation */
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(32, 178, 170, 0.7);
+    }
+    70% {
+      box-shadow: 0 0 0 10px rgba(32, 178, 170, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(32, 178, 170, 0);
+    }
+  }
+  
+  .login-button:active {
+    animation: pulse 0.5s;
+  }
+  
+  /* Typing Animation Script - Add to Component */
+  /*
+  // להוסיף את זה לקומפוננטה Angular שלך:
+  
+  import { AfterViewInit } from '@angular/core';
+  
+  ngAfterViewInit() {
+    this.startTypingAnimation();
+  }
+  
+  private startTypingAnimation() {
+    const textElement = document.getElementById('typing-text');
+    const fullText = 'Welcome back to your musical journey. Sign in to access your personal library and discover new sounds.';
+    
+    if (textElement) {
+      textElement.textContent = '';
+      textElement.classList.add('typing-animation');
+      
+      let index = 0;
+      const typingSpeed = 50; // milliseconds
+      
+      const typeChar = () => {
+        if (index < fullText.length) {
+          textElement.textContent += fullText.charAt(index);
+          index++;
+          setTimeout(typeChar, typingSpeed);
+        } else {
+          // Remove cursor after typing is complete
+          setTimeout(() => {
+            textElement.classList.remove('typing-animation');
+            // Restart animation after 3 seconds
+            setTimeout(() => {
+              this.startTypingAnimation();
+            }, 3000);
+          }, 1000);
+        }
+      };
+      
+      // Start typing after a short delay
+      setTimeout(typeChar, 1000);
+    }
+  }
+  */

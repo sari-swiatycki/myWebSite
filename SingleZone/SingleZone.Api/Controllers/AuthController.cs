@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using SingleZone.Api.PostModales;
 using SingleZone.Core.DTOs;
+using SingleZone.Core.entities;
 using SingleZone.Core.Interfaces.ServiceInterface;
 using SingleZone.Service;
 using System.IdentityModel.Tokens.Jwt;
@@ -82,6 +83,8 @@ namespace SingleZone.Api.Controllers
             {
                 return Conflict("User is not valid");
             }
+            if (!validation.IsValidEmail(model.Email))
+                return BadRequest();
             var modelD = _mapper.Map<UserDto>(model);
             var existingUser = await _userService.AddUserAsync(modelD,model.Password);
             if (existingUser == null)

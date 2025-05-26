@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { UserStatisticsComponent } from '../components/user-statistics/user-statistics.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,UserStatisticsComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

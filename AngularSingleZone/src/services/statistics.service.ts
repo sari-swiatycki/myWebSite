@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SystemStatisticsDto, UserStatisticsDto } from '../app/models/UserGrowth';
+import { environment } from '../enviroment/environment';
 
 
 @Injectable({
@@ -15,11 +16,11 @@ export class StatisticsService {
 
   // קריאה לסטטיסטיקות של משתמשים
   getUserStatistics(): Observable<UserStatisticsDto[]> {
-    return this.http.get<any>(`${this.apiUrl}/user-statistics`);
+    return this.http.get<any>(`${environment.apiUrl}/user-statistics`);
   }
 
   // קריאה לסטטיסטיקות של המערכת
-  getSystemStatistics(): Observable<SystemStatisticsDto> {
-    return this.http.get<any>(`${this.apiUrl}/system-statistics`);
-  }
+  // getSystemStatistics(): Observable<SystemStatisticsDto> {
+  //   return this.http.get<any>(`${this.apiUrl}/system-statistics`);
+  // }
 }

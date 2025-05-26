@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../enviroment/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -22,12 +23,12 @@ export class UserService {
     }
     getUserById(id: string): Observable<any> {
   
-      return this.http.get<any>(`${this.apiUrl}/${id}`);
+      return this.http.get<any>(`${environment.apiUrl}/${id}`);
     }
    // פונקציה לעדכון קורס לפי ID
    updateUser(id: string, updates: any): Observable<any> {
   
-    return this.http.put(`${this.apiUrl}/${id}`, updates)
+    return this.http.put(`${environment.apiUrl}/${id}`, updates)
   }
   
   // פונקציה למחיקת קורס לפי ID
@@ -36,6 +37,6 @@ export class UserService {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
   getUserGrowthData(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/growth`);
+    return this.http.get<any[]>(`${environment.apiUrl}/growth`);
   }
 }

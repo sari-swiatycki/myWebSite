@@ -1,5 +1,5 @@
-<div class="split-container">
-    <!-- Image Section -->
+<!-- <div class="split-container">
+   
     <div class="image-section">
       <img src="/14.jpg" alt="FolioTeach Background" class="background-image">
       <div class="overlay">
@@ -12,7 +12,7 @@
       </div>
     </div>
   
-    <!-- Login Section -->
+   
     <div class="login-section">
       <div class="login-card-container">
         <mat-card class="login-card">
@@ -47,4 +47,122 @@
         </mat-card>
       </div>
     </div>
+  </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="split-container">
+   
+    <div class="image-section">
+      <img src="/14.jpg" alt="SoundWave Background" class="background-image">
+      <div class="overlay">
+        <div class="logo-container">
+          <mat-icon>audiotrack</mat-icon>
+          <span>SoundWave</span>
+        </div>
+        <h2>Welcome Back</h2>
+        <p id="typing-text" class="typing-animation"></p>
+      </div>
+    </div>
+  
+    <div class="login-section">
+      <div class="login-card-container">
+        <mat-card class="login-card">
+          <div class="login-header">
+            <h1>Welcome Back</h1>
+            <p>Sign in to continue your musical journey</p>
+          </div>
+  
+          <!-- Error Message Display -->
+          <div class="error-message" *ngIf="showError">
+            {{ errormessage }}
+          </div>
+  
+          <form [formGroup]="addUserForm" (ngSubmit)="onSubmit()" class="login-form">
+            <mat-form-field appearance="fill"> 
+              <input matInput formControlName="userName" placeholder="Username" type="text" required>
+            </mat-form-field>
+            
+            <mat-form-field appearance="fill"> 
+              <input matInput formControlName="password" placeholder="Password" [type]="hide ? 'password' : 'text'" required>
+              <mat-icon matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                {{hide ? 'visibility_off' : 'visibility'}}
+              </mat-icon>
+              @if (addUserForm.get('password')?.hasError('required') && addUserForm.get('password')?.touched) {
+                <mat-error>Password is required</mat-error>
+              }
+            </mat-form-field>
+  
+            <div class="form-options">
+              <mat-checkbox formControlName="rememberMe" color="primary">Remember me</mat-checkbox>
+              <a href="#" class="forgot-password">FORGOT PASSWORD?</a>
+            </div>
+  
+            <button mat-flat-button color="primary" type="submit" class="login-button" [disabled]="!addUserForm.valid">
+              SIGN IN
+              <mat-icon>login</mat-icon>
+            </button>
+          </form>
+  
+          <div class="register-link">
+            <span>Don't have an account? </span>
+            <a href="#" class="register-button">SIGN UP</a>
+          </div>
+        </mat-card>
+      </div>
+    </div>
   </div>
+  
+  <script>
+  // Typing Animation
+  function startTypingAnimation() {
+    const textElement = document.getElementById('typing-text');
+    const fullText = 'Welcome back to your musical journey. Sign in to access your personal library and discover new sounds.';
+    
+    if (textElement) {
+      textElement.textContent = '';
+      textElement.classList.add('typing-animation');
+      
+      let index = 0;
+      const typingSpeed = 50; // milliseconds
+      
+      const typeChar = () => {
+        if (index < fullText.length) {
+          textElement.textContent += fullText.charAt(index);
+          index++;
+          setTimeout(typeChar, typingSpeed);
+        } else {
+          // Remove cursor after typing is complete
+          setTimeout(() => {
+            textElement.classList.remove('typing-animation');
+            // Restart animation after 3 seconds
+            setTimeout(() => {
+              startTypingAnimation();
+            }, 3000);
+          }, 1000);
+        }
+      };
+      
+      // Start typing after a short delay
+      setTimeout(typeChar, 1000);
+    }
+  }
+  
+  // Start animation when page loads
+  document.addEventListener('DOMContentLoaded', function() {
+    startTypingAnimation();
+  });
+  </script>

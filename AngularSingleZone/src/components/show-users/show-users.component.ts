@@ -82,7 +82,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { UserService } from '../../services/user.service';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -101,9 +100,7 @@ import { AddUserDialogComponent } from '../add-user-dialog/add-user-dialog.compo
   selector: 'app-show-users',
   standalone: true,
   imports: [
-    RouterOutlet,
-    RouterLink,
-    RouterLinkActive,
+    
     MatCardModule,
     MatButtonModule,
     MatIconModule,
@@ -112,7 +109,6 @@ import { AddUserDialogComponent } from '../add-user-dialog/add-user-dialog.compo
     FormsModule,
     DatePipe,
     MatDialogModule,          // ← תוסיף את זה
-    EditUserComponent, 
     
   ],
   templateUrl: './show-users.component.html',

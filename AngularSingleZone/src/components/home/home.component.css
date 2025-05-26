@@ -5,12 +5,10 @@
     background-color: black; /* צבע רקע שחור להדר */
     padding: 15px;
 }
-
 .nav {
     display: flex;
     gap: 15px;
 }
-
 .btn {
     color: white !important; /* טקסט לבן */
     font-weight: bold;
@@ -34,8 +32,9 @@
     display: block;
     width: 100%;
     height: 100vh; /* התמונה תתפוס את כל גובה המסך */
-    /* background-image: url('../../pictures/background.jpg'); */
     background-size: cover; /* התמונה תתפוס את כל הרקע */
     background-position: center center; /* מיקום התמונה במרכז */
     background-repeat: no-repeat; /* לא לחזור על התמונה */
 }
+
+
