@@ -13,13 +13,13 @@ export class UserService {
 
 
    getUsers(): Observable<any> {
-    return this.http.get<any>(environment.apiUrl);
+    return this.http.get<any>(`${environment.apiUrl}/Users`);
   }
 
 
    addUser(userName:string,email:string,password:string): Observable<any> 
     {     
-      return this.http.post<any>(environment.apiUrl,{userName,email,password});
+      return this.http.post<any>(`${environment.apiUrl}/Users`,{userName,email,password});
     }
     getUserById(id: string): Observable<any> {
   
@@ -30,10 +30,9 @@ export class UserService {
   
     return this.http.put(`${environment.apiUrl}/Users/${id}`, updates)
   }
-  
+ 
   // פונקציה למחיקת קורס לפי ID
   deleteUser(id: string): Observable<any> {
-  
     return this.http.delete(`${environment.apiUrl}/Users/${id}`);
   }
   getUserGrowthData(): Observable<any[]> {
