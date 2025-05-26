@@ -10,13 +10,13 @@ import { environment } from '../enviroment/environment';
 })
 export class StatisticsService {
   
-  private apiUrl = 'http://localhost:5120/api/Statistics';
+  // private apiUrl = 'http://localhost:5120/api/Statistics';
 
   constructor(private http: HttpClient) { }
 
   // קריאה לסטטיסטיקות של משתמשים
   getUserStatistics(): Observable<UserStatisticsDto[]> {
-    return this.http.get<any>(`${environment.apiUrl}/user-statistics`);
+    return this.http.get<any>(`${environment.apiUrl}/Statistics/user-statistics`);
   }
 
   // קריאה לסטטיסטיקות של המערכת
