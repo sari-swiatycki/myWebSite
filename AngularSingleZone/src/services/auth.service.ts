@@ -18,6 +18,6 @@ export class AuthService {
  
    login(userName: string, password: string): Observable<any> {
      const credentials = { userName, password };
-     return this.http.post(`${environment.apiUrl}/login` , credentials);
+     return this.http.post(`${environment.apiUrl}/Auth/login` , credentials);
    }
 }
