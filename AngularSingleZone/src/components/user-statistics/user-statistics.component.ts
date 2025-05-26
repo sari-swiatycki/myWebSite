@@ -905,8 +905,8 @@ export class UserStatisticsComponent implements OnInit, AfterViewInit {
     // Load all data in parallel
     Promise.all([
       this.fetchUserGrowthData(),
-      this.fetchUserStatistics(),
-      // this.fetchSystemStatistics()
+      // this.fetchUserStatistics(),
+      this.fetchSystemStatistics()
     ]).finally(() => {
       this.isLoading = false;
       if (this.isBrowser) {
@@ -934,46 +934,46 @@ export class UserStatisticsComponent implements OnInit, AfterViewInit {
     });
   }
 
-  private fetchUserStatistics(): Promise<void> {
+  // private fetchUserStatistics(): Promise<void> {
+  //   return new Promise((resolve) => {
+  //     this.statisticsService.getUserStatistics().pipe(
+  //       finalize(() => resolve())
+  //     ).subscribe({
+  //       next: (response: UserStatisticsDto[]) => {
+  //         this.dataSource = new MatTableDataSource(response);
+  //         // If you add MatPaginator back, uncomment this:
+  //         // if (this.paginator) {
+  //         //   this.dataSource.paginator = this.paginator;
+  //         // }
+  //       },
+  //       error: (error: any) => {
+  //         console.error('Error loading user statistics:', error);
+  //         if (this.isBrowser && this.notyf) {
+  //           this.notyf.error('שגיאה בטעינת סטטיסטיקות משתמשים');
+  //         }
+  //       }
+  //     });
+  //   });
+  // }
+
+  private fetchSystemStatistics(): Promise<void> {
     return new Promise((resolve) => {
-      this.statisticsService.getUserStatistics().pipe(
+      this.statisticsService.getSystemStatistics().pipe(
         finalize(() => resolve())
       ).subscribe({
-        next: (response: UserStatisticsDto[]) => {
-          this.dataSource = new MatTableDataSource(response);
-          // If you add MatPaginator back, uncomment this:
-          // if (this.paginator) {
-          //   this.dataSource.paginator = this.paginator;
-          // }
+        next: (response: SystemStatisticsDto) => {
+          this.systemStatistics = response;
+          this.updateSystemBarChart();
         },
         error: (error: any) => {
-          console.error('Error loading user statistics:', error);
+          console.error('Error loading system statistics:', error);
           if (this.isBrowser && this.notyf) {
-            this.notyf.error('שגיאה בטעינת סטטיסטיקות משתמשים');
+            this.notyf.error('שגיאה בטעינת סטטיסטיקות מערכת');
           }
         }
       });
     });
   }
-
-  // private fetchSystemStatistics(): Promise<void> {
-  //   // return new Promise((resolve) => {
-  //   //   this.statisticsService.getSystemStatistics().pipe(
-  //   //     finalize(() => resolve())
-  //   //   ).subscribe({
-  //   //     next: (response: SystemStatisticsDto) => {
-  //   //       this.systemStatistics = response;
-  //   //       this.updateSystemBarChart();
-  //   //     },
-  //   //     error: (error: any) => {
-  //   //       console.error('Error loading system statistics:', error);
-  //   //       if (this.isBrowser && this.notyf) {
-  //   //         this.notyf.error('שגיאה בטעינת סטטיסטיקות מערכת');
-  //   //       }
-  //   //     }
-  //   //   });
-  //   // });
-  // }
 
   prepareChartData(): void {
     const labels: string[] = [];

@@ -15,9 +15,9 @@ export class StatisticsService {
   constructor(private http: HttpClient) { }
 
   // קריאה לסטטיסטיקות של משתמשים
-  getUserStatistics(): Observable<UserStatisticsDto[]> {
-    return this.http.get<any>(`${environment.apiUrl}/Statistics/user-statistics`);
-  }
+  // getUserStatistics(): Observable<UserStatisticsDto[]> {
+  //   return this.http.get<any>(`${environment.apiUrl}/Statistics/user-statistics`);
+  // }
 
   // קריאה לסטטיסטיקות של המערכת
   getSystemStatistics(): Observable<SystemStatisticsDto> {
