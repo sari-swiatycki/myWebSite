@@ -1,14 +1,41 @@
-import { Component } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+// import { Component } from '@angular/core';
+// import { MatButtonModule } from '@angular/material/button';
+// import { MatCardModule } from '@angular/material/card';
+// import { MatIconModule } from '@angular/material/icon';
+// import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+// @Component({
+//   selector: 'app-home',
+//   standalone: true,
+//   imports: [MatButtonModule, MatIconModule,RouterOutlet,MatCardModule, MatButtonModule,RouterLinkActive, RouterLink],
+//   templateUrl: './home.component.html',
+//   styleUrl: './home.component.css'
+// })
+// export class HomeComponent {
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+import { Component } from "@angular/core"
+import { MatButtonModule } from "@angular/material/button"
+import { MatCardModule } from "@angular/material/card"
+import { MatIconModule } from "@angular/material/icon"
+import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router"
+
 @Component({
-  selector: 'app-home',
+  selector: "app-home",
   standalone: true,
-  imports: [MatButtonModule, MatIconModule,RouterOutlet,MatCardModule, MatButtonModule,RouterLinkActive, RouterLink],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  imports: [MatButtonModule, MatIconModule, RouterOutlet, MatCardModule, RouterLinkActive, RouterLink],
+  templateUrl: "./home.component.html",
+  styleUrl: "./home.component.css",
 })
-export class HomeComponent {
-}
+export class HomeComponent {}

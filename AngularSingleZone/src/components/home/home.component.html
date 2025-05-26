@@ -1,4 +1,4 @@
-<header class="header">
+<!-- <header class="header">
     <nav class="nav">
       <button mat-button class="btn black" [routerLink]="['/home/show-users']" routerLinkActive="buttonactive">
         <mat-icon>menu_book</mat-icon>users
@@ -10,4 +10,235 @@
       </button>
     </nav>
   </header>
-  <router-outlet></router-outlet>
+  <router-outlet></router-outlet> -->
+
+
+
+
+
+  <div class="admin-container">
+    <!-- Animated Background Elements -->
+    <div class="background-elements">
+      <div class="floating-circle circle-1"></div>
+      <div class="floating-circle circle-2"></div>
+      <div class="floating-circle circle-3"></div>
+      <div class="floating-circle circle-4"></div>
+      <div class="floating-text text-1">MUSIC</div>
+      <div class="floating-text text-2">ADMIN</div>
+      <div class="floating-text text-3">SOUND</div>
+      <div class="floating-text text-4">WAVE</div>
+    </div>
+  
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <div class="logo-section">
+          <div class="logo-icon">
+            <mat-icon class="spinning-icon">album</mat-icon>
+            <div class="logo-glow"></div>
+          </div>
+          <div class="logo-text">
+            <h1 class="main-title">SoundWave Admin</h1>
+            <p class="subtitle">Professional Music Platform</p>
+          </div>
+        </div>
+  
+        <nav class="nav">
+          <button mat-button class="btn black" [routerLink]="['/home/show-users']" routerLinkActive="buttonactive">
+            <mat-icon class="btn-icon">people</mat-icon>
+            <span class="btn-text">User Management</span>
+            <div class="btn-glow"></div>
+          </button>
+  
+          <button mat-button class="btn black" [routerLink]="['/home/UserGrowth']" routerLinkActive="buttonactive">
+            <mat-icon class="btn-icon">analytics</mat-icon>
+            <span class="btn-text">Analytics Dashboard</span>
+            <div class="btn-glow"></div>
+          </button>
+  
+          <button mat-button class="btn black">
+            <mat-icon class="btn-icon">settings</mat-icon>
+            <span class="btn-text">System Settings</span>
+            <div class="btn-glow"></div>
+          </button>
+        </nav>
+  
+        <div class="header-status">
+          <div class="status-indicator"></div>
+          <span class="status-text">Admin Portal</span>
+        </div>
+      </div>
+    </header>
+  
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Welcome Section -->
+      <section class="welcome-section">
+        <div class="welcome-content">
+          <h2 class="welcome-title">Music Platform Control Center</h2>
+          <p class="welcome-description">
+            Welcome to SoundWave Admin Dashboard. Manage your music platform with powerful tools and comprehensive
+            analytics. Monitor user engagement, track performance, and maintain your growing music community with ease.
+          </p>
+  
+          <div class="feature-cards">
+            <mat-card class="feature-card card-1">
+              <mat-card-content>
+                <mat-icon class="feature-icon">headset</mat-icon>
+                <h3>Real-Time Monitoring</h3>
+                <p>Track user activity and platform health with live data updates and comprehensive analytics tools.</p>
+              </mat-card-content>
+            </mat-card>
+  
+            <mat-card class="feature-card card-2">
+              <mat-card-content>
+                <mat-icon class="feature-icon">library_music</mat-icon>
+                <h3>Content Management</h3>
+                <p>Efficiently organize and manage your music library with advanced filtering and categorization.</p>
+              </mat-card-content>
+            </mat-card>
+  
+            <mat-card class="feature-card card-3">
+              <mat-card-content>
+                <mat-icon class="feature-icon">trending_up</mat-icon>
+                <h3>Advanced Analytics</h3>
+                <p>Gain deep insights into user behavior and content performance with sophisticated reporting tools.</p>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+      </section>
+  
+      <!-- Stats Section -->
+      <section class="stats-section">
+        <h3 class="section-title">Platform Overview</h3>
+        
+        <div class="stats-grid">
+          <mat-card class="stat-card">
+            <mat-card-content>
+              <mat-icon class="stat-icon">people</mat-icon>
+              <div class="stat-content">
+                <h4 class="stat-number">Active Users</h4>
+                <p class="stat-label">Platform Community</p>
+                <div class="stat-indicator positive">Growing</div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+  
+          <mat-card class="stat-card">
+            <mat-card-content>
+              <mat-icon class="stat-icon">music_note</mat-icon>
+              <div class="stat-content">
+                <h4 class="stat-number">Music Library</h4>
+                <p class="stat-label">Content Collection</p>
+                <div class="stat-indicator positive">Expanding</div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+  
+          <mat-card class="stat-card">
+            <mat-card-content>
+              <mat-icon class="stat-icon">play_arrow</mat-icon>
+              <div class="stat-content">
+                <h4 class="stat-number">Daily Streams</h4>
+                <p class="stat-label">User Engagement</p>
+                <div class="stat-indicator positive">High Activity</div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+  
+          <mat-card class="stat-card">
+            <mat-card-content>
+              <mat-icon class="stat-icon">speed</mat-icon>
+              <div class="stat-content">
+                <h4 class="stat-number">Performance</h4>
+                <p class="stat-label">System Health</p>
+                <div class="stat-indicator positive">Excellent</div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </section>
+  
+      <!-- Management Tools -->
+      <section class="tools-section">
+        <h3 class="section-title">Management Tools</h3>
+        
+        <div class="tools-grid">
+          <mat-card class="tool-card">
+            <mat-card-content>
+              <mat-icon class="tool-icon">supervisor_account</mat-icon>
+              <h4>User Management</h4>
+              <p>Manage user accounts, permissions, and platform access with comprehensive administrative tools.</p>
+              <button mat-raised-button class="tool-button">
+                <mat-icon>arrow_forward</mat-icon>
+                Manage Users
+              </button>
+            </mat-card-content>
+          </mat-card>
+  
+          <mat-card class="tool-card">
+            <mat-card-content>
+              <mat-icon class="tool-icon">library_books</mat-icon>
+              <h4>Content Library</h4>
+              <p>Organize songs, albums, and playlists across the platform with advanced categorization systems.</p>
+              <button mat-raised-button class="tool-button">
+                <mat-icon>arrow_forward</mat-icon>
+                Browse Library
+              </button>
+            </mat-card-content>
+          </mat-card>
+  
+          <mat-card class="tool-card">
+            <mat-card-content>
+              <mat-icon class="tool-icon">assessment</mat-icon>
+              <h4>Analytics Hub</h4>
+              <p>Deep insights into platform performance and user behavior with comprehensive reporting tools.</p>
+              <button mat-raised-button class="tool-button">
+                <mat-icon>arrow_forward</mat-icon>
+                View Analytics
+              </button>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </section>
+  
+      <!-- Platform Info -->
+      <section class="info-section">
+        <mat-card class="info-card">
+          <mat-card-content>
+            <h3 class="info-title">SoundWave Professional Platform</h3>
+            <p class="info-description">
+              Empowering music industry professionals with cutting-edge technology, comprehensive analytics, and
+              intuitive management tools. Experience the future of music platform administration.
+            </p>
+            
+            <div class="info-stats">
+              <div class="info-stat">
+                <h5>Platform Version</h5>
+                <p>v4.2.1 Enterprise</p>
+              </div>
+              <div class="info-stat">
+                <h5>Global Reach</h5>
+                <p>Worldwide Service</p>
+              </div>
+              <div class="info-stat">
+                <h5>Support</h5>
+                <p>24/7 Available</p>
+              </div>
+              <div class="info-stat">
+                <h5>Security</h5>
+                <p>Enterprise Grade</p>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </section>
+    </main>
+  
+    <!-- Router Outlet -->
+    <div class="router-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  
