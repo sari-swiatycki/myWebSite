@@ -8,7 +8,7 @@ import { environment } from '../enviroment/environment';
 })
 export class AuthService {
 
-  private apiUrl = 'http://localhost:5120/api/Auth'; // כאן תשים את ה-URL של ה-API שלך
+  // private apiUrl = 'http://localhost:5120/api/Auth'; // כאן תשים את ה-URL של ה-API שלך
 
    constructor(private http: HttpClient) { }
    register(userName:string, email: string, password: string, roleName: string): Observable<any> {
