@@ -370,13 +370,366 @@
 // // */
 // }
 
+// import { ChangeDetectorRef, Component, OnInit, ViewChild, AfterViewInit, Inject, PLATFORM_ID } from '@angular/core';
+// import { isPlatformBrowser } from '@angular/common';
+// import { ChartData, ChartOptions } from 'chart.js';
+// import { MatTableDataSource } from '@angular/material/table';
+// import { StatisticsService } from '../../services/statistics.service';
+// import { BaseChartDirective, NgChartsModule } from 'ng2-charts';
+// import { MatPaginator } from '@angular/material/paginator';
+// import { MatDividerModule } from '@angular/material/divider';
+// import { Notyf } from 'notyf';
+// import { NgIf } from '@angular/common';
+
+// import { MatTableModule } from '@angular/material/table';
+// import { MatCardModule } from '@angular/material/card';
+// import { finalize } from 'rxjs/operators';
+// import { UserService } from '../../services/user.service';
+// import { SystemStatisticsDto, UserGrowth, UserStatisticsDto } from '../../app/models/UserGrowth';
+
+// @Component({
+//   selector: 'app-user-statistics',
+//   standalone: true,
+//   imports: [MatTableModule, MatCardModule, NgChartsModule, MatPaginator, MatDividerModule, NgIf],
+//   templateUrl: './user-statistics.component.html',
+//   styleUrls: ['./user-statistics.component.css']
+// })
+// export class UserStatisticsComponent implements OnInit, AfterViewInit {
+//   public userGrowthData: UserGrowth[] = [];
+//   public isLoading = true;
+//   public isBrowser = false; // משתנה חדש לבדיקת סביבת דפדפן
+  
+//   public chartData: ChartData<'line'> = {
+//     labels: [],
+//     datasets: [
+//       {
+//         label: 'User Growth',
+//         data: [],
+//         fill: false,
+//         borderColor: 'rgb(75, 192, 192)',
+//         tension: 0.1
+//       }
+//     ]
+//   };
+  
+//   private notyf?: Notyf;
+  
+//   public chartOptions: ChartOptions = {
+//     responsive: true,
+//     maintainAspectRatio: false,
+//     scales: {
+//       x: { 
+//         title: { display: true, text: 'Month/Year' },
+//         grid: { display: false }
+//       },
+//       y: { 
+//         title: { display: true, text: 'Users Count' },
+//         beginAtZero: true,
+//         min: 0,
+//         suggestedMin: 0,
+//         ticks: {
+//           precision: 0,
+//           padding: 0
+//         },
+//         grid: {
+//           drawTicks: true,
+//           drawOnChartArea: true
+//         },
+//         border: {
+//           display: true
+//         },
+//         afterFit: (scaleInstance) => {
+//           scaleInstance.paddingBottom = 0;
+//         },
+//         afterDataLimits: (scale) => {
+//           scale.min = 0;
+//         }
+//       }
+//     },
+//     plugins: {
+//       legend: { position: 'top' },
+//       tooltip: { mode: 'index', intersect: false }
+//     },
+//     animation: {
+//       duration: 1000
+//     },
+//     layout: {
+//       padding: {
+//         bottom: 0
+//       }
+//     }
+//   };
+
+//   public systemBarChartData: ChartData<'bar'> = {
+//     labels: ['System Statistics'],
+//     datasets: [
+//       {
+//         label: 'Users',
+//         data: [0],
+//         backgroundColor: 'rgba(255, 44, 118, 0.7)'
+//       },
+//       {
+//         label: 'Songs',
+//         data: [0],
+//         backgroundColor: 'rgba(255, 206, 86, 0.7)'
+//       },
+//       {
+//         label: 'PlayLists',
+//         data: [0],
+//         backgroundColor: 'rgba(75, 192, 192, 0.7)'
+//       }
+//     ]
+//   };
+
+//   public systemBarChartOptions: ChartOptions = {
+//     responsive: true,
+//     maintainAspectRatio: false,
+//     scales: {
+//       y: { 
+//         beginAtZero: true,
+//         min: 0,
+//         suggestedMin: 0,
+//         ticks: {
+//           precision: 0
+//         }
+//       }
+//     },
+//     plugins: { 
+//       legend: { display: true, position: 'top' },
+//       tooltip: { mode: 'index', intersect: false }
+//     },
+//     animation: {
+//       duration: 1000
+//     }
+//   };
+
+//   public systemStatistics: SystemStatisticsDto = {
+//     totalUsers: 0,
+//     totalSongs: 0,
+//     totalPlayLists: 0
+//   };
+
+//   displayedColumns: string[] = ['username', 'albumCount', 'fileCount'];
+//   dataSource = new MatTableDataSource<UserStatisticsDto>([]);
+  
+//   @ViewChild(MatPaginator) paginator!: MatPaginator;
+//   @ViewChild('systemBarChart') systemBarChart!: BaseChartDirective;
+//   @ViewChild('userGrowthChart') userGrowthChart!: BaseChartDirective;
+
+//   constructor(
+//     private userService: UserService,
+//     private statisticsService: StatisticsService,
+//     private cdr: ChangeDetectorRef,
+//     @Inject(PLATFORM_ID) private platformId: Object
+//   ) {
+//     // קביעת ערך isBrowser בקונסטרקטור
+//     this.isBrowser = isPlatformBrowser(this.platformId);
+//   }
+
+//   ngOnInit(): void {
+//     // אתחול Notyf רק בסביבת דפדפן
+//     if (this.isBrowser) {
+//       this.notyf = new Notyf({
+//         duration: 5000,
+//         position: { x: 'center', y: 'top' },
+//         dismissible: true 
+//       });
+//     }
+    
+//     this.loadAllData();
+//   }
+
+//   ngAfterViewInit(): void {
+//     // Set paginator after view init
+//     if (this.dataSource && this.paginator) {
+//       this.dataSource.paginator = this.paginator;
+//     }
+//   }
+
+//   loadAllData(): void {
+//     this.isLoading = true;
+    
+//     // Load all data in parallel
+//     Promise.all([
+//       this.fetchUserGrowthData(),
+//       this.fetchUserStatistics(),
+//       // this.fetchSystemStatistics()
+//     ]).finally(() => {
+//       this.isLoading = false;
+//       if (this.isBrowser) {
+//         this.updateCharts();
+//       }
+//     });
+//   }
+
+//   private fetchUserGrowthData(): Promise<void> {
+//     return new Promise((resolve, reject) => {
+//       this.userService.getUserGrowthData().pipe(
+//         finalize(() => resolve())
+//       ).subscribe({
+//         next: (data: UserGrowth[]) => {
+//           this.userGrowthData = data;
+//           this.prepareChartData();
+//         },
+//         error: (error:any) => {
+//           console.error('Error loading user growth:', error);
+//           if (this.isBrowser && this.notyf) {
+//             this.notyf.error('שגיאה בטעינת נתוני צמיחת משתמשים');
+//           }
+//         }
+//       });
+//     });
+//   }
+
+//   private fetchUserStatistics(): Promise<void> {
+//     return new Promise((resolve, reject) => {
+//       this.statisticsService.getUserStatistics().pipe(
+//         finalize(() => resolve())
+//       ).subscribe({
+//         next: (response: UserStatisticsDto[]) => {
+//           this.dataSource = new MatTableDataSource(response);
+//           if (this.paginator) {
+//             this.dataSource.paginator = this.paginator;
+//           }
+//         },
+//         error: (error:any) => {
+//           console.error('Error loading user statistics:', error);
+//           if (this.isBrowser && this.notyf) {
+//             this.notyf.error('שגיאה בטעינת סטטיסטיקות משתמשים');
+//           }
+//         }
+//       });
+//     });
+//   }
+
+//   // private fetchSystemStatistics(): Promise<void> {
+//   //   // return new Promise((resolve, reject) => {
+//   //   //   this.statisticsService.getSystemStatistics().pipe(
+//   //   //     finalize(() => resolve())
+//   //   //   ).subscribe({
+//   //   //     next: (response: SystemStatisticsDto) => {
+//   //   //       this.systemStatistics = response;
+//   //   //       this.updateSystemBarChart();
+//   //   //     },
+//   //   //     error: (error) => {
+//   //   //       console.error('Error loading system statistics:', error);
+//   //   //       if (this.isBrowser && this.notyf) {
+//   //   //         this.notyf.error('שגיאה בטעינת סטטיסטיקות מערכת');
+//   //   //       }
+//   //   //     }
+//   //   //   });
+//   //   // });
+//   // }
+
+//   prepareChartData(): void {
+//     const labels: string[] = [];
+//     const userCounts: number[] = [];
+
+//     this.userGrowthData.forEach((item: UserGrowth) => {
+//       const label = `${item.month}/${item.year}`;
+//       labels.push(label);
+//       userCounts.push(item.userCount);
+//     });
+
+//     // Add a zero point at the beginning if it doesn't exist
+//     if (userCounts.length > 0 && userCounts[0] > 0) {
+//       labels.unshift('Start');
+//       userCounts.unshift(0);
+//     }
+
+//     this.chartData = {
+//       labels,
+//       datasets: [
+//         {
+//           label: 'User Growth',
+//           data: userCounts,
+//           fill: true,
+//           backgroundColor: 'rgba(75, 192, 192, 0.2)',
+//           borderColor: 'rgb(75, 192, 192)',
+//           borderWidth: 2,
+//           tension: 0.1,
+//           pointBackgroundColor: 'rgb(75, 192, 192)',
+//           pointRadius: 4
+//         }
+//       ]
+//     };
+//   }
+
+//   updateSystemBarChart(): void {
+//     this.systemBarChartData = {
+//       labels: ['System Statistics'],
+//       datasets: [
+//         {
+//           label: 'Users',
+//           data: [this.systemStatistics.totalUsers],
+//           backgroundColor: 'rgba(255, 44, 118, 0.7)'
+//         },
+//         {
+//           label: 'Songs',
+//           data: [this.systemStatistics.totalSongs],
+//           backgroundColor: 'rgba(255, 206, 86, 0.7)'
+//         },
+//         {
+//           label: 'Playlists',
+//           data: [this.systemStatistics.totalPlayLists],
+//           backgroundColor: 'rgba(75, 192, 192, 0.7)'
+//         }
+//       ]
+//     };
+//   }
+
+//   updateCharts(): void {
+//     // רק בסביבת דפדפן
+//     if (this.isBrowser) {
+//       setTimeout(() => {
+//         this.cdr.detectChanges();
+        
+//         if (this.userGrowthChart && this.userGrowthChart.chart) {
+//           this.userGrowthChart.chart.update();
+//         }
+        
+//         if (this.systemBarChart && this.systemBarChart.chart) {
+//           this.systemBarChart.chart.update();
+//         }
+//       }, 0);
+//     }
+//   }
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import { ChangeDetectorRef, Component, OnInit, ViewChild, AfterViewInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { ChartData, ChartOptions } from 'chart.js';
 import { MatTableDataSource } from '@angular/material/table';
 import { StatisticsService } from '../../services/statistics.service';
 import { BaseChartDirective, NgChartsModule } from 'ng2-charts';
-import { MatPaginator } from '@angular/material/paginator';
 import { MatDividerModule } from '@angular/material/divider';
 import { Notyf } from 'notyf';
 import { NgIf } from '@angular/common';
@@ -390,7 +743,7 @@ import { SystemStatisticsDto, UserGrowth, UserStatisticsDto } from '../../app/mo
 @Component({
   selector: 'app-user-statistics',
   standalone: true,
-  imports: [MatTableModule, MatCardModule, NgChartsModule, MatPaginator, MatDividerModule, NgIf],
+  imports: [MatTableModule, MatCardModule, NgChartsModule, MatDividerModule, NgIf],
   templateUrl: './user-statistics.component.html',
   styleUrls: ['./user-statistics.component.css']
 })
@@ -512,7 +865,6 @@ export class UserStatisticsComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['username', 'albumCount', 'fileCount'];
   dataSource = new MatTableDataSource<UserStatisticsDto>([]);
   
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild('systemBarChart') systemBarChart!: BaseChartDirective;
   @ViewChild('userGrowthChart') userGrowthChart!: BaseChartDirective;
 
@@ -540,10 +892,11 @@ export class UserStatisticsComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    // Set paginator after view init
-    if (this.dataSource && this.paginator) {
-      this.dataSource.paginator = this.paginator;
-    }
+    // Note: MatPaginator is not being used since it was removed from imports
+    // If you need pagination, add MatPaginator back to imports and uncomment below:
+    // if (this.dataSource && this.paginator) {
+    //   this.dataSource.paginator = this.paginator;
+    // }
   }
 
   loadAllData(): void {
@@ -553,7 +906,7 @@ export class UserStatisticsComponent implements OnInit, AfterViewInit {
     Promise.all([
       this.fetchUserGrowthData(),
       this.fetchUserStatistics(),
-      this.fetchSystemStatistics()
+      // this.fetchSystemStatistics()
     ]).finally(() => {
       this.isLoading = false;
       if (this.isBrowser) {
@@ -563,7 +916,7 @@ export class UserStatisticsComponent implements OnInit, AfterViewInit {
   }
 
   private fetchUserGrowthData(): Promise<void> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       this.userService.getUserGrowthData().pipe(
         finalize(() => resolve())
       ).subscribe({
@@ -571,7 +924,7 @@ export class UserStatisticsComponent implements OnInit, AfterViewInit {
           this.userGrowthData = data;
           this.prepareChartData();
         },
-        error: (error) => {
+        error: (error: any) => {
           console.error('Error loading user growth:', error);
           if (this.isBrowser && this.notyf) {
             this.notyf.error('שגיאה בטעינת נתוני צמיחת משתמשים');
@@ -582,17 +935,18 @@ export class UserStatisticsComponent implements OnInit, AfterViewInit {
   }
 
   private fetchUserStatistics(): Promise<void> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       this.statisticsService.getUserStatistics().pipe(
         finalize(() => resolve())
       ).subscribe({
         next: (response: UserStatisticsDto[]) => {
           this.dataSource = new MatTableDataSource(response);
-          if (this.paginator) {
-            this.dataSource.paginator = this.paginator;
-          }
+          // If you add MatPaginator back, uncomment this:
+          // if (this.paginator) {
+          //   this.dataSource.paginator = this.paginator;
+          // }
         },
-        error: (error) => {
+        error: (error: any) => {
           console.error('Error loading user statistics:', error);
           if (this.isBrowser && this.notyf) {
             this.notyf.error('שגיאה בטעינת סטטיסטיקות משתמשים');
@@ -602,24 +956,24 @@ export class UserStatisticsComponent implements OnInit, AfterViewInit {
     });
   }
 
-  private fetchSystemStatistics(): Promise<void> {
-    return new Promise((resolve, reject) => {
-      this.statisticsService.getSystemStatistics().pipe(
-        finalize(() => resolve())
-      ).subscribe({
-        next: (response: SystemStatisticsDto) => {
-          this.systemStatistics = response;
-          this.updateSystemBarChart();
-        },
-        error: (error) => {
-          console.error('Error loading system statistics:', error);
-          if (this.isBrowser && this.notyf) {
-            this.notyf.error('שגיאה בטעינת סטטיסטיקות מערכת');
-          }
-        }
-      });
-    });
-  }
+  // private fetchSystemStatistics(): Promise<void> {
+  //   // return new Promise((resolve) => {
+  //   //   this.statisticsService.getSystemStatistics().pipe(
+  //   //     finalize(() => resolve())
+  //   //   ).subscribe({
+  //   //     next: (response: SystemStatisticsDto) => {
+  //   //       this.systemStatistics = response;
+  //   //       this.updateSystemBarChart();
+  //   //     },
+  //   //     error: (error: any) => {
+  //   //       console.error('Error loading system statistics:', error);
+  //   //       if (this.isBrowser && this.notyf) {
+  //   //         this.notyf.error('שגיאה בטעינת סטטיסטיקות מערכת');
+  //   //       }
+  //   //     }
+  //   //   });
+  //   // });
+  // }
 
   prepareChartData(): void {
     const labels: string[] = [];
