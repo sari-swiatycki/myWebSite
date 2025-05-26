@@ -20,7 +20,7 @@ export class StatisticsService {
   }
 
   // קריאה לסטטיסטיקות של המערכת
-  // getSystemStatistics(): Observable<SystemStatisticsDto> {
-  //   return this.http.get<any>(`${this.apiUrl}/system-statistics`);
-  // }
+  getSystemStatistics(): Observable<SystemStatisticsDto> {
+    return this.http.get<any>(`${environment.apiUrl}/Statistics/system-statistics`);
+  }
 }
