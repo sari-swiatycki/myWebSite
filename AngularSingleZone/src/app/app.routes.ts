@@ -22,15 +22,18 @@ export const routes: Routes = [
     // {path:'',component:ShowUsersComponent}
 
 
-    // {path:'',component:UserStatisticsComponent},
+
+
 
     {path:'',component:LoginComponent},
-    {path:"home",component:HomeComponent},
-  
+    {path:"home",component:HomeComponent,children:
+    [      
+        // {path:'massage',component:MassageComponent},
+
         {path:'show-users',component:ShowUsersComponent},
         {path:'UserGrowth',component:UserStatisticsComponent},
-    
 
-    {path:'',component:ShowUsersComponent}
-    
+        // {path:'drawings',component:DrawingManagementComponent}
+
+    ]},
 ];
