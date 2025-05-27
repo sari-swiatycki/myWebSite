@@ -8,32 +8,8 @@ import { UserStatisticsComponent } from '../components/user-statistics/user-stat
 // import { SongsListComponent } from '../components/songs/songs.component';
 
 export const routes: Routes = [
-
-    //   {path:'',component:UserStatisticsComponent},
-
-    // {path:'',component:LoginComponent},
-    // {path:"home",component:HomeComponent,
-    //  children:
-    // [
-    //     {path:'show-users',component:ShowUsersComponent},
-    //     {path:'UserGrowth',component:UserStatisticsComponent},
-    // ]},
-
-    // {path:'',component:ShowUsersComponent}
-
-
-
-
-
-    {path:'',component:LoginComponent},
-    {path:"home",component:HomeComponent,children:
-    [      
-        // {path:'massage',component:MassageComponent},
-
-        {path:'show-users',component:ShowUsersComponent},
-        {path:'UserGrowth',component:UserStatisticsComponent},
-
-        // {path:'drawings',component:DrawingManagementComponent}
-
-    ]},
+    { path: '', component: LoginComponent },
+    { path: 'home', component: HomeComponent },
+    { path: 'show-users', component: ShowUsersComponent },
+    { path: 'UserGrowth', component: UserStatisticsComponent },
 ];
