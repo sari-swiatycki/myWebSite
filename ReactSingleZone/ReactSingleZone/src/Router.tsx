@@ -12,8 +12,9 @@ import PersonalAreaMenu from './components/PersonalAreaMenu';
 import Layout from './components/Layout';
 import LoginForm from './components/Login';
 import FileUploader from './components/file-uploader/FileUploader';
-import SongPlayer from './components/song-player/SongPlayer';
+// import SongPlayer from './components/song-player/SongPlayer';
 import RegisterForm from './components/register-form/RegisterForm';
+import SongPlayer from './components/SongPlayer';
 
 
 export const Router = createBrowserRouter([
