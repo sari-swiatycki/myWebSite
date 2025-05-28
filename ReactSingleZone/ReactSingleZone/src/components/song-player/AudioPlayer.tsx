@@ -1,10 +1,11 @@
-"use client";
+"use client"
 
-import React from "react";
-import { Box, IconButton, Typography } from "@mui/material";
-import { Play, Pause, Activity } from 'lucide-react';
-import { AudioPlayerProps } from "./types";
-import { COLORS, formatTime } from "./utils";
+import type React from "react"
+import { Box, IconButton, Typography } from "@mui/material"
+import { Play, Pause, Activity } from "lucide-react"
+import type { AudioPlayerProps } from "./types"
+import { formatTime } from "./utils"
+import { COLORS } from "./constants"
 
 const AudioPlayer: React.FC<AudioPlayerProps> = ({
   song,
@@ -16,9 +17,9 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
   audioRef,
 }) => {
   const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newTime = parseFloat(e.target.value);
-    onSeek(newTime);
-  };
+    const newTime = Number.parseFloat(e.target.value)
+    onSeek(newTime)
+  }
 
   return (
     <Box
@@ -113,7 +114,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
         </Box>
       </Box>
     </Box>
-  );
-};
+  )
+}
 
-export default AudioPlayer;
+export default AudioPlayer
