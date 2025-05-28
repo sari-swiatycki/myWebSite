@@ -9,7 +9,8 @@ import RegisterFormFields from "./RegisterFormFields"
 import WelcomeSection from "./WelcomeSection"
 import type { RegisterFormData } from "./types"
 import type { AppDispatch, RootStore } from "../../Stores/songStore"
-import { registerUser } from "../../Slices/authSlice"
+import { registerUser } from "../../Slices/authSlice "
+
 
 const RegisterForm: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>()
