@@ -7,13 +7,13 @@ import ProfileUpdate from './components/ProfileUpdate';
 import Playlists from './components/PersonalPlayList';
 import PlaylistSongs from './components/PlaylistSongsProps';
 
-import SongPlayer from './components/SongPlayer'; // ייבוא עמוד ההשמעה
 import HomePage from './components/HomePage';
 import PersonalAreaMenu from './components/PersonalAreaMenu';
 import Layout from './components/Layout';
 import RegisterForm from './components/Register';
 import LoginForm from './components/Login';
 import FileUploader from './components/file-uploader/FileUploader';
+import SongPlayer from './components/song-player/SongPlayer';
 
 
 export const Router = createBrowserRouter([
@@ -53,7 +53,6 @@ export const Router = createBrowserRouter([
 
       { path: 'menu', element:  <PersonalAreaMenu />},
       { index: true, element:  <PersonalAreaMenu />},
-
       { path: 'playlist/:id', element: <PlaylistSongs /> },
       { path: 'playlists/:userId', element: <Playlists /> },
       { path: 'profile-update', element: <ProfileUpdate /> },
