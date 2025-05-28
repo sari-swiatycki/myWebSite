@@ -10,10 +10,10 @@ import PlaylistSongs from './components/PlaylistSongsProps';
 import HomePage from './components/HomePage';
 import PersonalAreaMenu from './components/PersonalAreaMenu';
 import Layout from './components/Layout';
-import RegisterForm from './components/Register';
 import LoginForm from './components/Login';
 import FileUploader from './components/file-uploader/FileUploader';
 import SongPlayer from './components/song-player/SongPlayer';
+import RegisterForm from './components/register-form/RegisterForm';
 
 
 export const Router = createBrowserRouter([
