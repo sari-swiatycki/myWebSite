@@ -524,7 +524,7 @@ const SongPlayer: React.FC = () => {
       formData.append("file", audioBlob, `${song.title}.mp3`)
 
       // Send the file to the server for transcription
-      const transcriptionResponse = await fetch("http://localhost:5120/api/transcription/transcribe-full", {
+      const transcriptionResponse = await fetch("https://singlezone-net.onrender.com/api/transcription/transcribe-full", {
         method: "POST",
         body: formData,
       })
