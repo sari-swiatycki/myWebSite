@@ -8,12 +8,12 @@ import Playlists from './components/PersonalPlayList';
 import PlaylistSongs from './components/PlaylistSongsProps';
 
 import SongPlayer from './components/SongPlayer'; // ייבוא עמוד ההשמעה
-import FileUploader from './components/FileUploader ';
 import HomePage from './components/HomePage';
 import PersonalAreaMenu from './components/PersonalAreaMenu';
 import Layout from './components/Layout';
 import RegisterForm from './components/Register';
 import LoginForm from './components/Login';
+import FileUploader from './components/file-uploader/FileUploader';
 
 
 export const Router = createBrowserRouter([

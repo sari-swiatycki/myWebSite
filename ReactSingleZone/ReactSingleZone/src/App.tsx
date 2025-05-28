@@ -77,13 +77,11 @@ import { Router } from './Router'
 function App() {
   
   return (
-    <>
-   
+    <> 
     <Provider store={songStore}> 
         <RouterProvider router={Router} />    
     </Provider> 
     </>
   )
 }
-
 export default App
