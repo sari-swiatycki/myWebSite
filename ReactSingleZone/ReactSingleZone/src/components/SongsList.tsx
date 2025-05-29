@@ -334,20 +334,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootStore } from '../Stores/songStore';
@@ -388,15 +374,6 @@ const SongsList = () => {
    const dispatch = useDispatch<AppDispatch>();
   
   const roleName = sessionStorage.getItem('userRole');
-  
-  
-
-
-
-
-  
-
-
 
   const extractCoverArt = async (fileUrl: string) => {
     try {
