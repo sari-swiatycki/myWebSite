@@ -230,7 +230,7 @@ builder.Services.AddScoped<IPlayListSongService, PlayListSongService>();
 builder.Services.AddScoped<IPlayListRepository, PlayListRepository>();
 builder.Services.AddScoped<IStatisticsService, StatisticsService>();
 builder.Services.AddScoped<IPasswordHasher<Users>, PasswordHasher<Users>>();
-builder.Services.AddScoped<TranscriptionSe>();
+builder.Services.AddScoped<TranscriptionService>();
 
 
 // הוספת שירותי מסד נתונים
