@@ -154,7 +154,10 @@ namespace SingleZone.Service
             _openAiApiKey = Environment.GetEnvironmentVariable("OPENAI_API_KEY")
          ?? throw new InvalidOperationException("OPENAI_API_KEY is not set in environment variables.");
         }
-
+        private bool ContainsEnglish(string text)
+        {
+            return text.Any(c => (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'));
+        }
         public async Task<string> TranscribeAudioFullAsync(string audioFilePath)
         {
             _logger.LogInformation($"Starting transcription for file: {Path.GetFileName(audioFilePath)}");
@@ -606,8 +609,33 @@ namespace SingleZone.Service
             if (ContainsKorean(text)) return "Korean";
             if (ContainsGreek(text)) return "Greek";
             if (ContainsThai(text)) return "Thai";
+            if (ContainsEnglish(text)) return "English";
             return "";
         }
+
+        //private string GetTransliterationSystemMessage(string sourceLanguage)
+        //{
+        //    return sourceLanguage switch
+        //    {
+        //        "Hebrew" => "Convert the following Hebrew text to Latin characters (transliteration). Write each Hebrew word using English letters to show how it sounds. For example: 'שלום' becomes 'Shalom', 'אני אוהב אותך' becomes 'Ani ohev otach'. Keep the same structure and spacing.",
+        //        "Arabic" => "Convert the following Arabic text to Latin characters (transliteration). Write each Arabic word using English letters to show how it sounds. For example: 'السلام عليكم' becomes 'As-salaam alaikum'. Keep the same structure and spacing.",
+        //        "Russian" => "Convert the following Russian text to Latin characters (transliteration). Write each Russian word using English letters to show how it sounds. For example: 'Привет' becomes 'Privet', 'Как дела?' becomes 'Kak dela?'. Keep the same structure and spacing.",
+        //        "Chinese" => "Convert the following Chinese text to Pinyin (Latin transliteration). Write each Chinese character using Pinyin with tone marks. Keep the same structure and spacing.",
+        //        "Japanese" => "Convert the following Japanese text to Romaji (Latin transliteration). Write each Japanese word using English letters to show how it sounds. Keep the same structure and spacing.",
+        //        "Korean" => "Convert the following Korean text to Latin characters (transliteration). Write each Korean word using English letters to show how it sounds. Keep the same structure and spacing.",
+        //        "Greek" => "Convert the following Greek text to Latin characters (transliteration). Write each Greek word using English letters to show how it sounds. Keep the same structure and spacing.",
+        //        "Thai" => "Convert the following Thai text to Latin characters (transliteration). Write each Thai word using English letters to show how it sounds. Keep the same structure and spacing.",
+        //        => "Convert the following text to Latin characters (transliteration). Write each word using English letters to show how it sounds. Keep the same structure and spacing.",
+        //        "English" => "Convert the following English text to Hebrew letters showing how it sounds in Hebrew. Write each English word using Hebrew letters to show the pronunciation. For example: 'Hello' becomes 'הלו', 'Thank you' becomes 'ת'אנק יו', 'Computer' becomes 'קומפיוטר'. Keep the same structure and spacing. Write only the Hebrew transliteration without explanations.",
+        //        _ => "Convert the following text to Hebrew letters showing how it sounds in Hebrew. Write each word using Hebrew letters to show the pronunciation. Keep the same structure and spacing. Write only the Hebrew transliteration without explanations."
+        //    };
+        //}
+
+
+
+
+
+
 
         private string GetTransliterationSystemMessage(string sourceLanguage)
         {
@@ -621,7 +649,8 @@ namespace SingleZone.Service
                 "Korean" => "Convert the following Korean text to Latin characters (transliteration). Write each Korean word using English letters to show how it sounds. Keep the same structure and spacing.",
                 "Greek" => "Convert the following Greek text to Latin characters (transliteration). Write each Greek word using English letters to show how it sounds. Keep the same structure and spacing.",
                 "Thai" => "Convert the following Thai text to Latin characters (transliteration). Write each Thai word using English letters to show how it sounds. Keep the same structure and spacing.",
-                _ => "Convert the following text to Latin characters (transliteration). Write each word using English letters to show how it sounds. Keep the same structure and spacing."
+                "English" => "Convert the following English text to Hebrew letters showing how it sounds in Hebrew. Write each English word using Hebrew letters to show the pronunciation. For example: 'Hello' becomes 'הלו', 'Thank you' becomes 'ת'אנק יו', 'Computer' becomes 'קומפיוטר'. Keep the same structure and spacing. Write only the Hebrew transliteration without explanations.",
+                _ => "Convert the following text to Hebrew letters showing how it sounds in Hebrew. Write each word using Hebrew letters to show the pronunciation. Keep the same structure and spacing. Write only the Hebrew transliteration without explanations."
             };
         }
 
@@ -679,6 +708,9 @@ namespace SingleZone.Service
                 "italian" or "איטלקית" => "Traduci il seguente testo in italiano. Mantieni il significato originale e lo stile. Se è una canzone, cerca di preservare ritmo e rime quando possibile.",
                 _ => $"Translate the following text to {targetLanguage}. Maintain the original meaning and style. If it's a song, try to preserve rhythm and rhymes when possible."
             };
+
+
+
 
             return languageInstructions;
         }

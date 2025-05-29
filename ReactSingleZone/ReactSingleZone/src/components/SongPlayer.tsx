@@ -973,7 +973,7 @@ import type { RootStore } from "../Stores/songStore"
 import FileDownloadIcon from "@mui/icons-material/FileDownload"
 import DescriptionIcon from "@mui/icons-material/Description"
 import MusicNoteIcon from "@mui/icons-material/MusicNote"
-import LyricsIcon from "@mui/icons-material/Lyrics"
+// import LyricsIcon from "@mui/icons-material/Lyrics"
 import EqualizerIcon from "@mui/icons-material/Equalizer"
 import TranslateIcon from "@mui/icons-material/Translate"
 import SpellcheckIcon from "@mui/icons-material/Spellcheck"
@@ -995,7 +995,7 @@ import {
   InputLabel,
   Tooltip,
   Chip,
-  Divider,
+  // Divider,
   Card,
   CardContent,
 } from "@mui/material"
@@ -1039,10 +1039,10 @@ const SongPlayer: React.FC = () => {
   
   const [coverArt, setCoverArt] = useState<string>(DEFAULT_COVER)
   const [transcription, setTranscription] = useState<string>("")
-  const [translatedText, setTranslatedText] = useState<string>("")
+  // const [ setTranslatedText] = useState<string>("")ט
   const [linesData, setLinesData] = useState<LineData[]>([])
   const [isTranscribing, setIsTranscribing] = useState<boolean>(false)
-  const [isTranslating, setIsTranslating] = useState<boolean>(false)
+  const [] = useState<boolean>(false)
   const [showLyrics, setShowLyrics] = useState<boolean>(false)
   const [language, setLanguage] = useState<string>("original")
   const [transcriptionMode, setTranscriptionMode] = useState<string>("simple") // simple, translated, transliterated
@@ -1055,7 +1055,7 @@ const SongPlayer: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false)
   const [currentTime, setCurrentTime] = useState<number>(0)
   const [duration, setDuration] = useState<number>(0)
-  const API_URL = 'https://singlezone-net.onrender.com'
+  const API_URL = 'http://localhost:5120'
 
   // Transcription modes configuration
   const transcriptionModes: TranscriptionMode[] = [
@@ -1385,7 +1385,8 @@ const SongPlayer: React.FC = () => {
 
     } catch (error) {
       console.error("Error transcribing song:", error)
-      alert(`Error transcribing the song: ${error.message}. Please try again later.`)
+      const errorMessage = (error instanceof Error) ? error.message : "An unknown error occurred.";
+      alert(`Error transcribing the song: ${errorMessage}. Please try again later.`);
     } finally {
       setIsTranscribing(false)
     }
@@ -1428,7 +1429,7 @@ const SongPlayer: React.FC = () => {
 
     extractCoverArt()
     setTranscription("")
-    setTranslatedText("")
+    // setTranslatedText("")
     setLinesData([])
     setShowLyrics(false)
     setLanguage("original")
