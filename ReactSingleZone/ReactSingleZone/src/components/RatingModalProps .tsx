@@ -332,11 +332,11 @@ import StarIcon from "@mui/icons-material/Star"
 import CloseIcon from "@mui/icons-material/Close"
 import CheckCircleIcon from "@mui/icons-material/CheckCircle"
 
-// import { addRating } from "../Slices/actionSongSlice"
+import { addRating } from "../Slices/actionSongSlice"
 import MusicNoteIcon from "@mui/icons-material/MusicNote"
 import HeadphonesIcon from "@mui/icons-material/Headphones"
-// import { useDispatch } from "react-redux"
-// import { AppDispatch } from "../Stores/songStore"
+import { useDispatch } from "react-redux"
+import { AppDispatch } from "../Stores/songStore"
 
 // import { AppDispatch } from "../Stores/songStore"
 // import { useDispatch } from "react-redux"
@@ -349,7 +349,7 @@ interface RatingModalProps {
 }
 
 const RatingModal: React.FC<RatingModalProps> = ({ open, onClose, songId, songTitle }) => {
-  // const dispatch = useDispatch<AppDispatch>()
+  const dispatch = useDispatch<AppDispatch>()
 
   // Get songs from Redux store to update UI immediately
   // const songs = useSelector((state: RootStore) => state.songs.songs)
@@ -391,8 +391,7 @@ const RatingModal: React.FC<RatingModalProps> = ({ open, onClose, songId, songTi
 
   const handleSubmitRating = async () => {
     // Send rating to server
-    console.log(`Rating ${rating} for song ${songId} - will be implemented later`)
-    // await dispatch(addRating({ songId, value: rating }))
+    await dispatch(addRating({ songId, value: rating }))
 
     // Update local state immediately for UI refresh
     // This ensures the rating is visible immediately without needing to search again

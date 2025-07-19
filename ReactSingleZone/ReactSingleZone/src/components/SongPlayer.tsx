@@ -1055,8 +1055,8 @@ const SongPlayer: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false)
   const [currentTime, setCurrentTime] = useState<number>(0)
   const [duration, setDuration] = useState<number>(0)
-  const API_URL = 'http://localhost:5120'
-
+  // const API_URL = 'http://localhost:5120'
+   const API_URL = 'https://singlezone-net.onrender.com';
   // Transcription modes configuration
   const transcriptionModes: TranscriptionMode[] = [
     {
